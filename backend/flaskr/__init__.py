@@ -51,7 +51,8 @@ def create_app(test_config=None):
             formatted_categories[category.id] = category.type
         return jsonify({
             'success': True,
-            'categories': formatted_categories
+            'categories': formatted_categories,
+            'total_categories': len(Category.query.all())
         })
 
 
@@ -155,7 +156,23 @@ def create_app(test_config=None):
     """
     @app.route("/questions", methods=["POST"])
     def search_questions():
-        pass
+        data = request.get_json()
+        search_word = data.get('searchTerm', None)
+        try:
+            if search_word:
+                selection = Question.query.filter(Question.question.ilike
+                                                  (f'%{search_word}%')).all()
+
+            result = pagination(request, selection)
+
+            return jsonify({
+                'questions':   result,
+                'success': True,
+                'total_questions': len(selection),
+            })
+        except:
+            abort(400)
+
         
     """
     @TODO:
@@ -175,7 +192,7 @@ def create_app(test_config=None):
         return jsonify({
             'success': True,
             'questions': questions,
-            'total_Questions': len(questions)
+            'total_questions': len(questions)
         })
         
     """
@@ -189,35 +206,38 @@ def create_app(test_config=None):
     one question at a time is displayed, the user is allowed to answer
     and shown whether they were correct or not.
     """
-    @app.route('/quiz', methods = ['POST'])
+    @app.route('/quizzes', methods = ['POST'])
     def play_quiz():
-        data = request.get_json()
         try:
-            previous_questions = data.get("previous_questions")
-            quiz_category = data.get("quiz_category")
+            data = request.get_json()
+            quiz_category = data.get('quiz_category', None)
+            category_id = quiz_category["id"]
+            previous_questions = data.get('previous_questions', None)
 
-            if quiz_category:
-                questions = Question.query.filter_by(category=quiz_category).filter(Question.id.notin_(previous_questions)).all()
+            if category_id == 0:
+                questions = Question.query.filter(Question.id.notin_(previous_questions)).all()
+
+
             else:
-                questions = Question.query.filter(Question.category.in_(previous_questions)).all()
+                questions = Question.query.filter(Question.id.notin_(previous_questions),Question.category == category_id).all()
+            
 
             if questions:
-                random_question = random.choice(questions)
-                formated_random_question = random_question.format()
+                question = random.choice(questions)
             else:
-                formated_random_question = None
+                question = None
 
+
+            formatted_question = question.format()
 
             return jsonify({
                 'success': True,
-                'Question': formated_random_question
+                'question': formatted_question
             })
-
 
 
         except:
             abort(400)
-        
 
     """
     @TODO:
