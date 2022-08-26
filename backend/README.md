@@ -77,7 +77,7 @@ You will need to provide detailed documentation of your API endpoints including 
 
 - Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
 - Request Arguments: None
-- Returns: An object with a single key, `categories`, that contains an object of `id: category_string` key: value pairs.
+- Returns: return a list of questions,number of total questions, current category, categories.
 
 ```json
 {
@@ -87,6 +87,42 @@ You will need to provide detailed documentation of your API endpoints including 
   "4": "History",
   "5": "Entertainment",
   "6": "Sports"
+}
+```
+
+`GET '/api/v1.0/questions'`
+
+- Fetches a dictionary of questions in which the keys are the ids and the value is the corresponding string of the category
+- Request Arguments: None
+- Returns: An object with a single key, `categories`, that contains an object of `id: category_string` key: value pairs.
+
+```json
+{ 
+  "categories": {
+    "1": "Science",
+    "2": "Art",
+    "3": "Geography",
+    "4": "History",
+    "5": "Entertainment",
+    "6": "Sports"
+  },
+  "questions": [{
+      "answer": "Escher",
+      "category": "2",
+      "difficulty": 1,
+      "id": 16,
+      "question": "Which Dutch graphic artist\u2013initials M C was a creator of optical illusions?"
+    },
+    {
+      "answer": "Mona Lisa",
+      "category": "2",
+      "difficulty": 3,
+      "id": 17,
+      "question": "La Giaconda is better known as what?"
+    }
+  ],
+  "success": true,
+  "total_questions": 22
 }
 ```
 
