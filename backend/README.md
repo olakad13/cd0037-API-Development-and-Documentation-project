@@ -2,7 +2,7 @@
   * Returns all the categories
   * URI:- http://127.0.0.1:5000/categories
   * Response
-      * {
+      ` {
       "categories": {
           "1": "history",
           "2": "science",
@@ -12,13 +12,13 @@
           "6" : "Sports"
           },
       "success": true
-          }
+          } `
 
 ## GET /questions
  * Returns all the questions in batches
  * URI:- http://127.0.0.1:5000/questions
  * Response 
-    * {
+    `{
         "categories": {
             "1": "Science",
             "2": "Art",
@@ -101,18 +101,18 @@
         ],
         "success": true,
         "total_questions": 24
-      }
+      }`
 
 
 ## DELETE /questions/<int:id>
   * Deletes question with given ID.
   * URI:- http://127.0.0.1:5000/questions/12
   * Response
-      * {
+      ` {
               "id": 12,
               "message": "Question deleted successfully ",
               "success": true
-          }
+          } `
 ## POST /questions
   * Inserting a new question.
   * URI:- http://127.0.0.1:5000/questions
@@ -125,7 +125,7 @@
           "question": "What is the colour of sky"
           }
   * Response
-      * {
+      ` {
           "question": {
               "answer": "blue",
               "category": "2",
@@ -134,13 +134,13 @@
               "question": "What is the colour of sky"
                       },
           "success": true
-       }
+       } `
 
 ## GET /categories/<int:category_id>/questions
   * Getting all question that belongs to a particular category
   * URI:- http://127.0.0.1:5000/categories/6/questions
   * Response
-    * {
+    ` {
     "questions": [
         {
         "answer": "Uruguay",
@@ -152,7 +152,7 @@
     ],
     "success": true,
     "total_questions": 1
-    }
+    } `
 
 ## GET /quizzes
   * Getting a random question within a choosen category
@@ -165,7 +165,7 @@
    * Json format: 
      { "searchTerm": "soccer"}
    * Response 
-     * {
+     ` {
         "questions": [
             {
             "answer": "Brazil",
@@ -183,4 +183,4 @@
             }
         ],
         "totalQuestions": 2
-        }
+        } `
