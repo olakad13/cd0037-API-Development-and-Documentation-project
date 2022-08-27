@@ -177,7 +177,7 @@
    * Json format: 
      { "searchTerm": "soccer"}
    * Response 
-    ``` 
+   ``` 
       {
         "questions": [
             {
@@ -197,5 +197,5 @@
         ],
         "totalQuestions": 2
       } 
-      
+
     ```
