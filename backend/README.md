@@ -105,20 +105,21 @@
         "success": true,
         "total_questions": 24
       }
-    ```
+
+  ```
 
 
 ## DELETE /questions/<int:id>
   * Deletes question with given ID.
   * URI:- http://127.0.0.1:5000/questions/12
   * Response
-    ```
+  ```
        {
               "id": 12,
               "message": "Question deleted successfully ",
               "success": true
           } 
-    ```
+  ```
 ## POST /questions
   * Inserting a new question.
   * URI:- http://127.0.0.1:5000/questions
@@ -131,7 +132,7 @@
           "question": "What is the colour of sky"
           }
   * Response
-    ```
+  ```
       {
           "question": {
               "answer": "blue",
@@ -142,7 +143,7 @@
                       },
           "success": true
        }
-    ```
+  ```
 
 ## GET /categories/<int:category_id>/questions
   * Getting all question that belongs to a particular category
@@ -177,7 +178,7 @@
      { "searchTerm": "soccer"}
    * Response 
     ``` 
-     {
+      {
         "questions": [
             {
             "answer": "Brazil",
@@ -195,5 +196,6 @@
             }
         ],
         "totalQuestions": 2
-        } 
+      } 
+      
     ```
